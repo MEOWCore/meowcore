@@ -15,8 +15,8 @@ project "Lua_Server"
 	}
 
 	filter "system:windows"
-		defines { "LUA_BUILD_AS_DLL" }
-		kind "SharedLib"
+		--defines { "LUA_BUILD_AS_DLL" }
+		kind "StaticLib"
 		targetdir(buildpath("server/mods/deathmatch"))
 
 	filter "system:not windows"

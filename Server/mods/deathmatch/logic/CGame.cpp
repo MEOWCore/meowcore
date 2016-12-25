@@ -576,7 +576,7 @@ bool CGame::Start ( int iArgumentCount, char* szArguments [] )
     HandleCrashDumpEncryption();
 
     // Check Windows server is using correctly compiled Lua dll
-    #ifndef MTA_DEBUG
+    /*#ifndef MTA_DEBUG
         #ifdef WIN32
             HMODULE hModule = LoadLibrary( "lua5.1.dll" );
             // Release server should not have this function
@@ -588,7 +588,7 @@ bool CGame::Start ( int iArgumentCount, char* szArguments [] )
                 return false;
             }
         #endif
-    #endif
+    #endif*/
 
     // Read some settings
     m_pACLManager->SetFileName ( m_pMainConfig->GetAccessControlListFile ().c_str () );

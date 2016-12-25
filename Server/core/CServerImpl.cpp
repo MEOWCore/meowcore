@@ -162,6 +162,8 @@ void CServerImpl::Daemonize () const
 }
 #endif
 
+MTAEXPORT CNetServer * InitNetServerInterface();
+MTAEXPORT CXML * InitXMLInterface(const char*);
 
 int CServerImpl::Run ( int iArgumentCount, char* szArguments [] )
 {
@@ -304,7 +306,7 @@ int CServerImpl::Run ( int iArgumentCount, char* szArguments [] )
     m_strServerPath = m_strServerPath.TrimEnd ( "/" );
 
     // Set the mod path
-    m_strServerModPath = m_strServerPath + "/mods/deathmatch";
+    m_strServerModPath = m_strServerPath + "/server";
 
     // Tell the mod manager the server path
     m_pModManager->SetServerPath ( m_strServerPath );
@@ -314,11 +316,11 @@ int CServerImpl::Run ( int iArgumentCount, char* szArguments [] )
         Print ( "MTA:BLUE Server for MTA:SA\n\n" );
 
     // Load the network DLL
-    if ( m_NetworkLibrary.Load ( PathJoin ( m_strServerPath, SERVER_BIN_PATH, szNetworkLibName ) ) )
-    {
+    //if ( m_NetworkLibrary.Load ( PathJoin ( m_strServerPath, SERVER_BIN_PATH, szNetworkLibName ) ) )
+    
         // Network module compatibility check
-        typedef unsigned long (*PFNCHECKCOMPATIBILITY) ( unsigned long, unsigned long* );
-        PFNCHECKCOMPATIBILITY pfnCheckCompatibility = reinterpret_cast< PFNCHECKCOMPATIBILITY > ( m_NetworkLibrary.GetProcedureAddress ( "CheckCompatibility" ) );
+        /*typedef unsigned long (*PFNCHECKCOMPATIBILITY) ( unsigned long, unsigned long* );
+        PFNCHECKCOMPATIBILITY pfnCheckCompatibility = reinterpret_cast< PFNCHECKCOMPATIBILITY > ( );
         if ( !pfnCheckCompatibility || !pfnCheckCompatibility ( MTA_DM_SERVER_NET_MODULE_VERSION, NULL ) )
         {
             // net.dll doesn't like our version number
@@ -332,18 +334,18 @@ int CServerImpl::Run ( int iArgumentCount, char* szArguments [] )
             WaitForKey ( 'q' );
             DestroyWindow ( );
             return ERROR_NETWORK_LIBRARY_FAILED;
-        }
+        }*/
 
-        if ( m_XMLLibrary.Load ( PathJoin ( m_strServerPath, SERVER_BIN_PATH, szXMLLibName ) ) )
-        {
+       // if ( m_XMLLibrary.Load ( PathJoin ( m_strServerPath, SERVER_BIN_PATH, szXMLLibName ) ) )
+       // {
+		InitNetServerInterface_ pfnInitNetServerInterface = InitNetServerInterface;
+		InitXMLInterface_ pfnInitXMLInterface = InitXMLInterface;
             // Grab the network interface
-            InitNetServerInterface pfnInitNetServerInterface = (InitNetServerInterface) ( m_NetworkLibrary.GetProcedureAddress ( "InitNetServerInterface" ) );
-            InitXMLInterface pfnInitXMLInterface = (InitXMLInterface) ( m_XMLLibrary.GetProcedureAddress ( "InitXMLInterface" ) );
             if ( pfnInitNetServerInterface && pfnInitXMLInterface )
             {
                 // Call it to grab the network interface class
-                m_pNetwork = pfnInitNetServerInterface ();
-                m_pXML = pfnInitXMLInterface ( *m_strServerModPath );
+                m_pNetwork = pfnInitNetServerInterface();
+                m_pXML = InitXMLInterface ( *m_strServerModPath);
                 if ( m_pNetwork && m_pXML )
                 {
                     // Make the modmanager load our mod
@@ -378,7 +380,7 @@ int CServerImpl::Run ( int iArgumentCount, char* szArguments [] )
                     return ERROR_NETWORK_LIBRARY_FAILED;
                 }
             }
-            else
+            /*else
             {
                 // Couldn't find the InitNetServerInterface func
                 Print ( "ERROR: No suitable initialization functions found!\n" );
@@ -386,8 +388,8 @@ int CServerImpl::Run ( int iArgumentCount, char* szArguments [] )
                 WaitForKey ( 'q' );
                 DestroyWindow ( );
                 return ERROR_NETWORK_LIBRARY_FAILED;
-            }
-        }
+            }*/
+        /*}
         else
         {
             // Couldn't load it
@@ -396,8 +398,8 @@ int CServerImpl::Run ( int iArgumentCount, char* szArguments [] )
             WaitForKey ( 'q' );
             DestroyWindow ( );
             return ERROR_NO_NETWORK_LIBRARY;
-        }
-    }
+        }*/
+    /*}
     else
     {
         // Couldn't load it
@@ -406,7 +408,7 @@ int CServerImpl::Run ( int iArgumentCount, char* szArguments [] )
         WaitForKey ( 'q' );
         DestroyWindow ( );
         return ERROR_NO_NETWORK_LIBRARY;
-    }
+    }*/
 
     // Normal termination
     DestroyWindow ( );

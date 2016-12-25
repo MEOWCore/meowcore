@@ -25,7 +25,7 @@ class CServerImpl;
 #include <core/CServerInterface.h>
 #include <net/CNetServer.h>
 
-#include "CDynamicLibrary.h"
+//#include "CDynamicLibrary.h"
 #include "CModManagerImpl.h"
 #include <xml/CXML.h>
 #include "CThreadCommandQueue.h"
@@ -36,8 +36,8 @@ class CServerImpl;
 
 #define SERVER_RESET_RETURN 500
 
-typedef CXML* (*InitXMLInterface) ( const char* szSaveFlagDirectory );
-typedef CNetServer* (*InitNetServerInterface) ( void );
+typedef CXML* (*InitXMLInterface_) ( const char* szSaveFlagDirectory );
+typedef CNetServer* (*InitNetServerInterface_) ( void );
 
 #ifdef WIN32
 typedef void (FClientFeedback) ( const char* szText );
@@ -83,8 +83,8 @@ private:
 
     void                DestroyWindow       ( void );
 
-    CDynamicLibrary     m_NetworkLibrary;
-    CDynamicLibrary     m_XMLLibrary;
+    //CDynamicLibrary     m_NetworkLibrary;
+    //CDynamicLibrary     m_XMLLibrary;
     CNetServer*         m_pNetwork;
     CModManagerImpl*    m_pModManager;
     CXML*               m_pXML;

@@ -1,7 +1,7 @@
 project "Client - Core"
 	language "C++"
 	kind "SharedLib"
-	targetname "core"
+	targetname "client"
 	targetdir(buildpath("mta"))
 	
 	filter "system:windows"
@@ -54,7 +54,8 @@ project "Client - Core"
 		"../../vendor/bass/lib/tags",
 		"CEGUI", "DirectX9GUIRenderer", "Falagard",
 		"../../vendor/cegui-0.4.0-custom/lib/freetype2412ST.lib", -- Todo: Select Debug variant, also move freetype to vendor
-		"dxerr.lib", "Lua_Client", "pcre", "raknet", "libcurl"
+		"dxerr.lib", "Lua_Client", "pcre", "raknet", "libcurl",
+		"Client - Network", "XML", "Normaliz"
 	}
 
 	defines {

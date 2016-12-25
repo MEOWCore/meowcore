@@ -1,8 +1,8 @@
 project "Server - Game Logic"
 	language "C++"
-	kind "SharedLib"
+	kind "StaticLib"
 	targetname "deathmatch"
-	targetdir(buildpath("server/mods/deathmatch"))
+	targetdir(buildpath("server"))
 
 	pchheader "StdInc.h"
 	pchsource "StdInc.cpp"

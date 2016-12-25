@@ -36,7 +36,7 @@ _DECLSPEC_EX void ReleaseXMLInterface()
 }
 
 #ifdef WIN32
-
+/*
 int WINAPI DllMain(HINSTANCE hModule, DWORD dwReason, PVOID pvNothing)
 {
     // Kill the interface on detach
@@ -47,7 +47,7 @@ int WINAPI DllMain(HINSTANCE hModule, DWORD dwReason, PVOID pvNothing)
 
     return TRUE;
 }
-
+*/
 #else
 
 void __attribute__ ((destructor)) ReleaseXMLInterface(void);

@@ -16,7 +16,7 @@
 #ifndef MAX_PATH
 #define MAX_PATH 260
 #endif
-#include "SharedUtil.hpp"
+//#include "SharedUtil.hpp"
 
 CXMLImpl::CXMLImpl ( void )
 {

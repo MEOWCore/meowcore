@@ -37,9 +37,9 @@ project "CEGUI"
 	}
 	
 	filter "files:src/tinyxml/**.cpp"
-		flags { "NoPCH" }	
+		flags { "NoPCH", "ExcludeFromBuild" }	
 	filter "files:src/pcre/**.c"
-		flags { "NoPCH" }
+		flags { "NoPCH", "ExcludeFromBuild" }
 	
 	filter "architecture:x64"
 		flags { "ExcludeFromBuild" } 

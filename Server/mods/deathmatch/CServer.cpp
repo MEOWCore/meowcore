@@ -12,14 +12,14 @@
 
 #include "StdInc.h"
 #define ALLOC_STATS_MODULE_NAME "deathmatch"
-#include "SharedUtil.hpp"
+/*#include "SharedUtil.hpp"
 #include "SharedUtil.Thread.h"
 #include "SharedUtil.IntervalCounter.h"
 #include "SharedUtil.IntervalCounter.hpp"
 #if defined(_DEBUG) 
-    #include "SharedUtil.Tests.hpp"
+#include "SharedUtil.Tests.hpp"
 #endif
-
+*/
 CServerInterface* g_pServerInterface = NULL;
 CNetServer* g_pNetServer = NULL;
 CNetServer* g_pRealNetServer = NULL;

@@ -1033,7 +1033,10 @@ void CGUI_Impl::PopGuiWorkingDirectory ( const SString& strDirCheck )
 
 void CGUI_Impl::ApplyGuiWorkingDirectory ( void )
 {
-    CEGUI::System::getSingleton().SetGuiWorkingDirectory ( m_GuiWorkingDirectoryStack.back () );
+	auto dir = m_GuiWorkingDirectoryStack.back();
+
+	WriteDebugEvent(SString("Apply gui working dir %s", dir));
+    CEGUI::System::getSingleton().SetGuiWorkingDirectory ( dir );
 }
 
 const SString& CGUI_Impl::GetGuiWorkingDirectory ( void ) const

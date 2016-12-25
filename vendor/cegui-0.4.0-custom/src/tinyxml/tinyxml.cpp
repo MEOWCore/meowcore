@@ -800,35 +800,6 @@ void TiXmlElement::Print( FILE* cfile, int depth ) const
 	}
 }
 
-void TiXmlElement::StreamOut( TIXML_OSTREAM * stream ) const
-{
-	(*stream) << "<" << value;
-
-	const TiXmlAttribute* attrib;
-	for ( attrib = attributeSet.First(); attrib; attrib = attrib->Next() )
-	{	
-		(*stream) << " ";
-		attrib->StreamOut( stream );
-	}
-
-	// If this node has children, give it a closing tag. Else
-	// make it an empty tag.
-	TiXmlNode* node;
-	if ( firstChild )
-	{ 		
-		(*stream) << ">";
-
-		for ( node = firstChild; node; node=node->NextSibling() )
-		{
-			node->StreamOut( stream );
-		}
-		(*stream) << "</" << value << ">";
-	}
-	else
-	{
-		(*stream) << " />";
-	}
-}
 
 
 void TiXmlElement::CopyTo( TiXmlElement* target ) const

@@ -1259,6 +1259,8 @@ void FreeLibraryHandle ( void )
 /////////////////////////////////////////////////////////////////////
 void UpdateMTAVersionApplicationSetting ( bool bQuiet )
 {
+
+	return;
 #ifdef MTA_DEBUG
     SString strFilename = "netc_d.dll";
 #else

@@ -1026,7 +1026,7 @@ void CCore::InitGUI ( IDirect3DDevice9* pDevice )
 
 void CCore::CreateGUI ( void )
 {
-    LoadModule ( m_GUIModule, "GUI", "cgui" );
+    //LoadModule ( m_GUIModule, "GUI", "cgui" );
 }
 
 void CCore::DestroyGUI ( )
@@ -1039,13 +1039,14 @@ void CCore::DestroyGUI ( )
     m_GUIModule.UnloadModule ();
 }
 
+extern "C" CNet * InitNetInterface(CCoreInterface * core);
 
 void CCore::CreateNetwork ( )
 {
-    m_pNet = CreateModule < CNet > ( m_NetModule, "Network", "netc", "InitNetInterface", this );
+	m_pNet = InitNetInterface(this); // CreateModule < CNet >(m_NetModule, "Network", "netc", "InitNetInterface", this);
 
     // Network module compatibility check
-    typedef unsigned long (*PFNCHECKCOMPATIBILITY) ( unsigned long, unsigned long* );
+    /*typedef unsigned long (*PFNCHECKCOMPATIBILITY) ( unsigned long, unsigned long* );
     PFNCHECKCOMPATIBILITY pfnCheckCompatibility = static_cast< PFNCHECKCOMPATIBILITY > ( m_NetModule.GetFunctionPointer ( "CheckCompatibility" ) );
     if ( !pfnCheckCompatibility || !pfnCheckCompatibility ( MTA_DM_CLIENT_NET_MODULE_VERSION, NULL ) )
     {
@@ -1054,7 +1055,7 @@ void CCore::CreateNetwork ( )
         pfnCheckCompatibility ( 1, &ulNetModuleVersion );
         SString strMessage( "Network module not compatible! (Expected 0x%x, got 0x%x)", MTA_DM_CLIENT_NET_MODULE_VERSION, ulNetModuleVersion );
         BrowseToSolution ( "netc-not-compatible", ASK_GO_ONLINE | TERMINATE_PROCESS, strMessage );
-    }
+    }*/
 
     // Set mta version for report log here
     SetApplicationSetting ( "mta-version-ext", SString ( "%d.%d.%d-%d.%05d.%d.%03d"
@@ -1071,11 +1072,12 @@ void CCore::CreateNetwork ( )
     SetApplicationSetting ( "serial", szSerial );
 }
 
+extern "C" CXML * InitXMLInterface(const char*);
 
 void CCore::CreateXML ( )
 {
-    if ( !m_pXML )
-        m_pXML = CreateModule < CXML > ( m_XMLModule, "XML", "xmll", "InitXMLInterface", *CalcMTASAPath ( "MTA" ) );
+	if (!m_pXML)
+		m_pXML = InitXMLInterface(*CalcMTASAPath("MTA")); // CreateModule < CXML > ( m_XMLModule, "XML", "xmll", "InitXMLInterface", *CalcMTASAPath ( "MTA" ) );
 
     if ( !m_pConfigFile )
     {

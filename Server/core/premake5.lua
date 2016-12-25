@@ -1,8 +1,8 @@
 project "Server - Core"
 	language "C++"
 	kind "SharedLib"
-	targetname "core"
-	targetdir(buildpath("server"))
+	targetname "server"
+	targetdir(buildpath("."))
 	
 	filter "system:windows"
 		includedirs { "../../vendor/sparsehash/current/src/windows" }
@@ -13,6 +13,8 @@ project "Server - Core"
 			"../sdk", 
 			"../../vendor/google-breakpad/src",
 			"../../vendor/sparsehash/current/src/",
+			"../../vendor/pthreads/include",
+			"../../Bin/server/"
 		}
 	
 	pchheader "StdInc.h"
@@ -38,7 +40,7 @@ project "Server - Core"
 		includedirs { 
 			"../../vendor/detours/include"
 		}
-		links { "detours", "Imagehlp" }
+		links { "Normaliz", "detours", "Imagehlp", "Server - Game Logic", "pthread", "Lua_Server", "sqlite", "ehs", "cryptopp", "pme", "pcre", "json-c", "zip", "zlib", "ws2_32", "Server - Network", "XML", "curl" }
 	
 	filter "system:not windows"
 		excludes { "CExceptionInformation_Impl.cpp" }

@@ -57,11 +57,13 @@ CServerBase* CModManagerImpl::GetCurrentMod ( void )
     return m_pBase;
 }
 
+MTAEXPORT CServerBase * InitDMServer();
 
 bool CModManagerImpl::Load ( const char* szModName, int iArgumentCount, char* szArguments [] )
 {
+	m_strModPath = SString("%s/server", m_strServerPath.c_str());
     // Fail if no server path is specified
-    if ( m_strServerPath == "" )
+    /*if ( m_strServerPath == "" )
         return false;
 
     // Make the string path to the mod library
@@ -88,17 +90,17 @@ bool CModManagerImpl::Load ( const char* szModName, int iArgumentCount, char* sz
         // Report the error
         Print ( "\nERROR: Bad file: %s!\n", strFilename.c_str () );
         return false;
-    }
+    }*/
 
     // Call the InitServer procedure to get the interface
-    m_pBase = pfnInitServer ();
+	m_pBase = InitDMServer();
     if ( !m_pBase )
     {
         // Unload the library
-        m_Library.Unload ();
+//        m_Library.Unload ();
 
         // Report the error
-        Print ( "\nERROR: Failed initializing '%s'!\n", strFilename.c_str () );
+        Print ( "\nERROR: Failed initializing '%s'!\n", szModName );
         return false;
     }
 
@@ -140,7 +142,7 @@ void CModManagerImpl::Unload ( bool bKeyPressBeforeTerm )
         }
 #endif
         // Unload the library
-        m_Library.Unload ();
+        //m_Library.Unload ();
     }
 }
 

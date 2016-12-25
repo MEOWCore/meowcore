@@ -14,7 +14,7 @@
 
 CServer* g_pServer = NULL;
 
-MTAEXPORT CServerBase* InitServer ( void )
+MTAEXPORT CServerBase* InitDMServer ( void )
 {
     // Create a server and return it
     if ( !g_pServer )
@@ -38,7 +38,7 @@ MTAEXPORT void ReleaseServer ( void )
 
 
 #ifdef WIN32    /* Win32 DllMain entry */
-
+/*
 int WINAPI DllMain(HINSTANCE hModule, DWORD dwReason, PVOID pvNothing)
 {
     if ( dwReason == DLL_PROCESS_DETACH )
@@ -48,7 +48,7 @@ int WINAPI DllMain(HINSTANCE hModule, DWORD dwReason, PVOID pvNothing)
 
     return TRUE;
 }
-
+*/
 #else           /* POSIX library destructor */
 
 void __attribute__ ((destructor)) ReleaseServer(void);

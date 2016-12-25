@@ -8,17 +8,17 @@
 
 #include <StdInc.h>
 #define ALLOC_STATS_MODULE_NAME "netc"
-#include "SharedUtil.hpp"
+/*#include "SharedUtil.hpp"
 #include "SharedUtil.Thread.h"
 #include "SharedUtil.IntervalCounter.h"
-#include "SharedUtil.IntervalCounter.hpp"
+#include "SharedUtil.IntervalCounter.hpp"*/
 
 
 #include <net/CNet.h>
 #include "CNetClient.h"
 #include <core/CCoreInterface.h>
 
-CCoreInterface * g_pCore = NULL;
+extern CCoreInterface * g_pCore;
 
 extern "C" __declspec(dllexport)
 unsigned long CheckCompatibility(unsigned long, unsigned long*)

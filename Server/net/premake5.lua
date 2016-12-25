@@ -8,7 +8,7 @@
 
 project "Server - Network"
 	language "C++"
-	kind "SharedLib"
+	kind "StaticLib"
 	targetname "net"
 	targetdir(buildpath("server"))
 	

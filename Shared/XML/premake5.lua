@@ -1,6 +1,6 @@
 project "XML"
 	language "C++"
-	kind "SharedLib"
+	kind "StaticLib"
 	targetname "xmll"
 	targetdir(buildpath("server"))
 	

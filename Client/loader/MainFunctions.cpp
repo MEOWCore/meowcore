@@ -778,7 +778,7 @@ void CheckDataFiles( void )
     }
 
     // Make sure important dll's do not exist in the wrong place
-    const char* dllCheckList[] = { "xmll.dll", "cgui.dll", "netc.dll", "libcurl.dll", "pthread.dll" };
+    const char* dllCheckList[] = { "pthread.dll" };
     for ( int i = 0 ; i < NUMELMS ( dllCheckList ); i++ )
     {
         if ( FileExists( PathJoin( strGTAPath, dllCheckList[i] ) ) )
@@ -823,15 +823,7 @@ void CheckLibVersions( void )
 #if MTASA_VERSION_TYPE == VERSION_TYPE_RELEASE + 0xD34D
 
     const char* moduleList [] =     { "MTA\\loader.dll"
-                                     ,"MTA\\cgui.dll"
                                      ,"MTA\\core.dll"
-                                     ,"MTA\\game_sa.dll"
-                                     ,"MTA\\multiplayer_sa.dll"
-                                     ,"MTA\\netc.dll"
-                                     ,"MTA\\xmll.dll"
-                                     ,"MTA\\game_sa.dll"
-                                     ,"mods\\deathmatch\\client.dll"
-                                     ,"mods\\deathmatch\\pcre3.dll"
                                     };
     SString strReqFileVersion;
     for ( uint i = 0 ; i < NUMELMS( moduleList ) ; i++ )

@@ -1,6 +1,6 @@
 project "curl"
 	language "C++"
-	kind "SharedLib"
+	kind "StaticLib"
 	targetname "libcurl"
 	targetdir(buildpath("server"))
 	

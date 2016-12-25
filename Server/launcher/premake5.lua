@@ -1,7 +1,7 @@
 project "Server - Launcher"
 	language "C++"
 	kind "ConsoleApp"
-	targetdir(buildpath("server"))
+	targetdir(buildpath("."))
 	
 	includedirs { "../sdk" }
 	

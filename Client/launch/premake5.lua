@@ -1,7 +1,7 @@
 project "Client - Launcher"
 	language "C++"
 	kind "WindowedApp"
-	targetname "MeowCore"
+	targetname "meow-client"
 	targetdir(buildpath("."))
 	debugdir(buildpath("."))
 	

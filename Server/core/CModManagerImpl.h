@@ -20,7 +20,7 @@ class CModManagerImpl;
 #include <core/CModManager.h>
 #include <core/CServerBase.h>
 
-#include "CDynamicLibrary.h"
+//#include "CDynamicLibrary.h"
 #include "CServerImpl.h"
 
 typedef CServerBase* (InitServer)();
@@ -54,13 +54,13 @@ public:
 
     bool                PendingWorkToDo         ( void );
     bool                GetSleepIntervals       ( int& iSleepBusyMs, int& iSleepIdleMs, int& iLogicFpsLimit );
-    CDynamicLibrary&    GetDynamicLibrary       ( void )                { return m_Library; };
+    //CDynamicLibrary&    GetDynamicLibrary       ( void )                { return m_Library; };
 
 private:
     CServerImpl*        m_pServer;
 
     CServerBase*        m_pBase;
-    CDynamicLibrary     m_Library;
+    //CDynamicLibrary     m_Library;
     SString             m_strServerPath;    // Root path
     SString             m_strModPath;       // root/mods/deathmatch
 };

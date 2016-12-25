@@ -49,9 +49,9 @@
 using namespace std;
 
 #ifdef WIN32
-    #define LIB_CORE SERVER_BIN_PATH "core" MTA_LIB_SUFFIX MTA_LIB_EXTENSION
+    #define LIB_CORE SERVER_BIN_PATH "server" MTA_LIB_SUFFIX MTA_LIB_EXTENSION
 #else
-    #define LIB_CORE "./" SERVER_BIN_PATH "core" MTA_LIB_SUFFIX MTA_LIB_EXTENSION
+    #define LIB_CORE "./" SERVER_BIN_PATH "server" MTA_LIB_SUFFIX MTA_LIB_EXTENSION
 #endif
 
 #ifndef WIN32
@@ -147,6 +147,7 @@ int main ( int argc, char* argv [] )
         fclose ( fh );
 
     // Load the core library
+	SetDllDirectory("server/");
     CDynamicLibrary Core;
     if ( Core.Load ( LIB_CORE ) )
     {

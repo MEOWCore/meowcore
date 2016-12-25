@@ -582,4 +582,6 @@
   typedef CURL_TYPEOF_CURL_OFF_T curl_off_t;
 #endif
 
+#define CURL_STATICLIB 1
+
 #endif /* __CURL_CURLBUILD_H */
