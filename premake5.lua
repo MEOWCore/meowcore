@@ -26,7 +26,7 @@ workspace "MTASA"
 	pic "On"
 	symbols "On"
 	
-	dxdir = os.getenv("DXSDK_DIR") or ""
+	dxdir = os.getenv("DXSDK_DIR") or "c:\\dxsdk\\"
 	includedirs { 
 		"vendor",
 		"Shared/sdk", 
@@ -104,6 +104,8 @@ workspace "MTASA"
 		include "Client/loader"
 		include "Client/multiplayer_sa"
 		include "Client/mods/deathmatch"
+		include "Client/netc"
+
 		
 		group "Client/CEGUI"
 		include "vendor/cegui-0.4.0-custom/src/renderers/directx9GUIRenderer"
@@ -119,6 +121,8 @@ workspace "MTASA"
 		include "vendor/pthreads"
 		include "vendor/libspeex"
 		include "vendor/curl/lib"
+
+
 	end
 	
 	filter {}
@@ -127,10 +131,12 @@ workspace "MTASA"
 		include "Server/dbconmy"
 		include "Server/launcher"
 		include "Server/mods/deathmatch"
+		include "Server/net"
 		
 		group "Shared"
 		include "Shared"
 		include "Shared/XML"
+		include "vendor/RakNet"
 		
 		group "Vendor"
 		include "vendor/cryptopp"
