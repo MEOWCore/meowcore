@@ -13,7 +13,7 @@ else
 	CI_BUILD = false
 end 
 
-workspace "MTASA"
+workspace "MeowCore"
 	configurations {"Debug", "Release", "Nightly"}
 	platforms { "x86", "x64"}
 	targetprefix ("")

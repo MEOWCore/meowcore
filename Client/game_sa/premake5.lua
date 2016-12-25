@@ -1,4 +1,4 @@
-project "Game SA"
+project "Game - San Andreas"
 	language "C++"
 	kind "SharedLib"
 	targetname "game_sa"

@@ -1,4 +1,4 @@
-project "Dbconmy"
+project "Server - MySQL support"
 	language "C++"
 	kind "SharedLib"
 	targetname "dbconmy"

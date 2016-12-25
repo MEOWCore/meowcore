@@ -6,7 +6,7 @@
 --
 --===========================================
 
-project "Server Network"
+project "Server - Network"
 	language "C++"
 	kind "SharedLib"
 	targetname "net"

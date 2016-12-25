@@ -1,7 +1,7 @@
-project "Client Launcher"
+project "Client - Launcher"
 	language "C++"
 	kind "WindowedApp"
-	targetname "Multi Theft Auto"
+	targetname "MeowCore"
 	targetdir(buildpath("."))
 	debugdir(buildpath("."))
 	

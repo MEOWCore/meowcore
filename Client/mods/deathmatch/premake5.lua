@@ -1,4 +1,4 @@
-project "Client Deathmatch"
+project "Client - Game Logic"
 	language "C++"
 	kind "SharedLib"
 	targetname "client"

@@ -149,8 +149,11 @@ public:
 };
 
 
-#undef CREATE_SUSPENDED
-#define CREATE_SUSPENDED 5
+//#undef CREATE_SUSPENDED
+//#define CREATE_SUSPENDED 5
+
+#define _WscGetSecurityProviderHealth 0
+#define DONT_ASSIST_ANTI_VIRUS 1
 
 #ifdef DONT_ASSIST_ANTI_VIRUS
 

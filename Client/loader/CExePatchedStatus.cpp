@@ -26,7 +26,7 @@ SExePatchedStatus GetExePatchedStatus( bool bUseExeCopy )
     status.bLargeMem    = UpdatePatchStatusLargeMem  ( strGTAEXEPath, PATCH_CHECK ) == PATCH_CHECK_RESULT_ON;
     status.bDep         = UpdatePatchStatusDep       ( strGTAEXEPath, PATCH_CHECK ) == PATCH_CHECK_RESULT_ON;
     status.bNvightmare  = UpdatePatchStatusNvightmare( strGTAEXEPath, PATCH_CHECK ) == PATCH_CHECK_RESULT_ON;
-    status.bAltModules  = UpdatePatchStatusAltModules( strGTAEXEPath, PATCH_CHECK ) == PATCH_CHECK_RESULT_ON;
+    //status.bAltModules  = UpdatePatchStatusAltModules( strGTAEXEPath, PATCH_CHECK ) == PATCH_CHECK_RESULT_ON;
 
     return status;
 }
@@ -46,7 +46,7 @@ SExePatchedStatus GetExePatchRequirements( void )
     status.bLargeMem    = true;
     status.bDep         = true;
     status.bNvightmare  = GetApplicationSettingInt( "nvhacks", "optimus-export-enablement" ) ? true : false;
-    status.bAltModules  = GetPatchRequirementAltModules();
+    //status.bAltModules  = GetPatchRequirementAltModules();
 
     return status;
 }
@@ -69,7 +69,7 @@ bool SetExePatchedStatus( bool bUseExeCopy, const SExePatchedStatus& status )
     bReqAdmin |= UpdatePatchStatusLargeMem  ( strGTAEXEPath, status.bLargeMem   ? PATCH_SET_ON : PATCH_SET_OFF ) == PATCH_SET_RESULT_REQ_ADMIN;
     bReqAdmin |= UpdatePatchStatusDep       ( strGTAEXEPath, status.bDep        ? PATCH_SET_ON : PATCH_SET_OFF ) == PATCH_SET_RESULT_REQ_ADMIN;
     bReqAdmin |= UpdatePatchStatusNvightmare( strGTAEXEPath, status.bNvightmare ? PATCH_SET_ON : PATCH_SET_OFF ) == PATCH_SET_RESULT_REQ_ADMIN;
-    bReqAdmin |= UpdatePatchStatusAltModules( strGTAEXEPath, status.bAltModules ? PATCH_SET_ON : PATCH_SET_OFF ) == PATCH_SET_RESULT_REQ_ADMIN;
+    //bReqAdmin |= UpdatePatchStatusAltModules( strGTAEXEPath, status.bAltModules ? PATCH_SET_ON : PATCH_SET_OFF ) == PATCH_SET_RESULT_REQ_ADMIN;
 
     return !bReqAdmin;
 }

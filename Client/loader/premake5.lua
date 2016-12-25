@@ -1,4 +1,4 @@
-project "Loader"
+project "Client - Loader"
 	language "C++"
 	kind "SharedLib"
 	targetname "loader"

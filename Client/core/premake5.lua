@@ -1,4 +1,4 @@
-project "Client Core"
+project "Client - Core"
 	language "C++"
 	kind "SharedLib"
 	targetname "core"

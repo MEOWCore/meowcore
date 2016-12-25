@@ -1,4 +1,4 @@
-project "Deathmatch"
+project "Server - Game Logic"
 	language "C++"
 	kind "SharedLib"
 	targetname "deathmatch"

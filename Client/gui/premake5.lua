@@ -1,4 +1,4 @@
-project "GUI"
+project "Client - GUI"
 	language "C++"
 	kind "SharedLib"
 	targetname "cgui"

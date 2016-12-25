@@ -1481,7 +1481,7 @@ uint WaitForObject ( HANDLE hProcess, HANDLE hThread, DWORD dwMilliseconds, HAND
 ///////////////////////////////////////////////////////////////////////////
 bool CheckService ( uint uiStage )
 {
-    HMODULE hModule = GetLibraryHandle ( "kernel32.dll" );
+    /*HMODULE hModule = GetLibraryHandle ( "kernel32.dll" );
 
     if ( hModule )
     {
@@ -1494,9 +1494,9 @@ bool CheckService ( uint uiStage )
             AddReportLog ( 8070, SString ( "CheckService %d result: %d", uiStage, bResult ) );
             return bResult;
         }
-    }
+    }*/
 
-    return false;
+    return true;
 }
 
 

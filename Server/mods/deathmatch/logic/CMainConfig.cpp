@@ -92,7 +92,7 @@ CMainConfig::CMainConfig ( CConsole* pConsole, CLuaManager* pLuaMain ): CXMLConf
     m_strBandwidthReductionMode = "medium";
     m_iPendingWorkToDoSleepTime = -1;
     m_iNoWorkToDoSleepTime = -1;
-    m_bThreadNetEnabled = true;
+    m_bThreadNetEnabled = false;
     m_iBackupInterval = 3;
     m_iBackupAmount = 5;
     m_bSyncMapElementData = true;
@@ -500,7 +500,7 @@ bool CMainConfig::Load ( void )
     m_iNoWorkToDoSleepTime = Clamp ( -1, m_iNoWorkToDoSleepTime, 50 );
 
     // threadnet - Default to on at startup
-    m_bThreadNetEnabled = true;
+    m_bThreadNetEnabled = false;
     ApplyThreadNetEnabled ();
 
     // auth_serial_groups

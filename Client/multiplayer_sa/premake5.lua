@@ -1,4 +1,4 @@
-project "Multiplayer SA"
+project "Multiplayer - San Andreas"
 	language "C++"
 	kind "SharedLib"
 	targetname "multiplayer_sa"

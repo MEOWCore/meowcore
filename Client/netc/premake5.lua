@@ -6,7 +6,7 @@
 --
 --===========================================
 
-project "Client Network"
+project "Client - Network"
 	language "C++"
 	kind "SharedLib"
 	targetname "netc"

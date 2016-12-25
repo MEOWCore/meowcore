@@ -1,4 +1,4 @@
-project "Launcher"
+project "Server - Launcher"
 	language "C++"
 	kind "ConsoleApp"
 	targetdir(buildpath("server"))
@@ -19,7 +19,7 @@ project "Launcher"
 	}
 	
 	filter "system:windows"
-		targetname "MTA Server"
+		targetname "meow-server"
 		flags { "StaticRuntime" } 
 		files {
 			"launcher.rc",
@@ -30,10 +30,10 @@ project "Launcher"
 		links { "dl" }
 
 	filter {"system:linux", "platforms:x86"}
-		targetname "mta-server"
+		targetname "meow-server"
 
 	filter {"system:linux", "platforms:x64"}
-		targetname "mta-server64"
+		targetname "meow-server64"
 	
 	filter {"system:windows", "platforms:x64"}
-		targetname "MTA Server64"
+		targetname "meow-server64"
