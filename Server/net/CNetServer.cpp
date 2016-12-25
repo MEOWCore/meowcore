@@ -282,6 +282,19 @@ void CNetServerImpl::GenerateRandomData(void * pOutData, uint uiLength)
 	}
 }
 
+bool CNetServerImpl::GetScriptInfo(const char * cpInBuffer, uint uiInSize, SScriptInfo * pOutInfo)
+{
+	auto info = new SScriptInfo(); 
+	info->szMinClientRunVer = new char[256]; 
+	info->szMinServerHostVer = new char[256];
+	info->szMinServerRunVer = new char[256]; 
+	strcpy((char*)info->szMinClientRunVer, ""); 
+	strcpy((char*)info->szMinServerHostVer, ""); 
+	strcpy((char*)info->szMinServerRunVer, "");  
+	*pOutInfo = *info;  
+	return true;
+}
+
 NetServerPlayerID CNetServerImpl::GetPlayerNetId(RakNet::SystemAddress addr)
 {
 	for (auto player : players)

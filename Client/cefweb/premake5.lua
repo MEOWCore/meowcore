@@ -1,4 +1,4 @@
-project "Client Webbrowser"
+project "Client - WebBrowser"
 	language "C++"
 	kind "SharedLib"
 	targetname "cefweb"

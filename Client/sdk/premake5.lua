@@ -1,4 +1,4 @@
-project "Client SDK"
+project "Client - SDK"
 	language "C++"
 	kind "StaticLib"
 	targetname "sdk"

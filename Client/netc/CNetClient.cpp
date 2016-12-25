@@ -52,7 +52,7 @@ bool CNetClient::StartNetwork(const char * szServerHost, unsigned short usServer
 
 void CNetClient::StopNetwork(void)
 {
-	client->Shutdown(5000);
+	client->Shutdown(1000);
 }
 
 void CNetClient::SetFakeLag(unsigned short usPacketLoss, unsigned short usMinExtraPing, unsigned short usExtraPingVariance, int iKBPSLimit)
@@ -116,7 +116,7 @@ void CNetClient::DoPulse(void)
 
 void CNetClient::Shutdown(void)
 {
-	client->Shutdown(5000);
+	client->Shutdown(1000);
 }
 
 void CNetClient::RegisterPacketHandler(PPACKETHANDLER pfnPacketHandler)
@@ -198,7 +198,7 @@ void CNetClient::SetConnectionError(unsigned char ucConnectionError)
 
 void CNetClient::Reset(void)
 {
-	//Shutdown();
+	Shutdown();
 	usServerBitStreamVersion = 0x0;
 	client = RakNet::RakPeerInterface::GetInstance();
 	pfnPacketHandler = NULL;

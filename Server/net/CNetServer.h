@@ -73,7 +73,7 @@ public:
 	void                            GenerateRandomData(void* pOutData, uint uiLength);
 	bool                            EncryptDumpfile(const char* szClearPathFilename, const char* szEncryptedPathFilename) { return false; }
 	bool                            ValidateHttpCacheFileName(const char* szFilename) { return true; }
-	bool                            GetScriptInfo(const char* cpInBuffer, uint uiInSize, SScriptInfo* pOutInfo) { auto info = new SScriptInfo(); info->szMinClientRunVer = new char[256]; info->szMinServerHostVer = new char[256]; info->szMinServerRunVer = new char[256]; strcpy((char*)info->szMinClientRunVer, "1.3.0-9.03772"); strcpy((char*)info->szMinServerHostVer, "1.3.0"); strcpy((char*)info->szMinServerRunVer, "1.3.0");  *pOutInfo = *info;  return true; }
+	bool                            GetScriptInfo(const char* cpInBuffer, uint uiInSize, SScriptInfo* pOutInfo);
 	bool                            DeobfuscateScript(const char* cpInBuffer, uint uiInSize, const char** pcpOutBuffer, uint* puiOutSize, const char* szScriptName) { *pcpOutBuffer = cpInBuffer; *puiOutSize = uiInSize; return true; }
 	bool                            GetPlayerPacketUsageStats(uchar* packetIdList, uint uiNumPacketIds, SPlayerPacketUsage* pOutStats, uint uiTopCount) { return true; }
 	const char*                     GetLogOutput(void) { return NULL; }

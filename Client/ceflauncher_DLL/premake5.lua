@@ -1,4 +1,4 @@
-project "CEFLauncher DLL"
+project "Client - CEFLauncher DLL"
 	language "C++"
 	kind "SharedLib"
 	targetname "CEFLauncher_DLL"

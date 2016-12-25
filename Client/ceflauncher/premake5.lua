@@ -1,4 +1,4 @@
-project "CEFLauncher"
+project "Client - CEFLauncher"
 	language "C++"
 	kind "WindowedApp"
 	targetname "CEFLauncher"
@@ -6,7 +6,7 @@ project "CEFLauncher"
 	
 	includedirs { "../sdk" }
 	
-	links { "CEFLauncher DLL"}
+	links { "Client - CEFLauncher DLL"}
 	flags { "WinMain" }
 
 	vpaths { 

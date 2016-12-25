@@ -47,7 +47,7 @@ bool CNetHTTPDownloadManager::ProcessQueuedFiles(void)
 	if (downloads.size() > 0)
 	{
 #ifdef NET_CLIENT
-		g_pCore->GetConsole()->Printf("File downloads %d\n", downloads.size());
+		//g_pCore->GetConsole()->Printf("File downloads %d\n", downloads.size());
 #endif
 			//g_pCore->GetConsole()->Printf("Download %d\n", i);
 			DownloadableFile * file = downloads.front();
@@ -65,7 +65,7 @@ bool CNetHTTPDownloadManager::ProcessQueuedFiles(void)
 
 					__fullsize += r.text.length();
 #ifdef NET_CLIENT
-					g_pCore->GetConsole()->Printf("File %s %s size: %d %s\n", *file->szOutputFile, *file->szURL, r.text.length(), r.text.c_str());
+					//g_pCore->GetConsole()->Printf("File %s %s size: %d %s\n", *file->szOutputFile, *file->szURL, r.text.length(), r.text.c_str());
 #endif
 					if (file->callback)
 						file->callback((char*)*SString(r.text.data(), NULL), r.text.length(), file->objectPtr, !(bool)r.error, (int)r.error.code);
@@ -87,7 +87,7 @@ bool CNetHTTPDownloadManager::ProcessQueuedFiles(void)
 
 					__fullsize += r.text.length();
 #ifdef NET_CLIENT
-					g_pCore->GetConsole()->Printf("File %s %s size: %d %s\n", *file->szOutputFile, *file->szURL, r.text.length(), r.text.c_str());
+					//g_pCore->GetConsole()->Printf("File %s %s size: %d %s\n", *file->szOutputFile, *file->szURL, r.text.length(), r.text.c_str());
 #endif
 					if (file->callback)
 						file->callback((char*)*SString(r.text.data(), NULL), r.text.length(), file->objectPtr, !(bool)r.error, (int)r.error.code);

@@ -285,6 +285,8 @@ bool CHTTPD::ShouldAllowConnection ( const char * szAddress )
     if ( MapContains( m_HttpDosExcludeMap, szAddress ) )
         return true;
 
+#ifdef DDOS_PROTECT
+
     if ( m_HttpDosProtect.IsFlooding ( szAddress ) )
         return false;
 
@@ -295,6 +297,6 @@ bool CHTTPD::ShouldAllowConnection ( const char * szAddress )
         CLogger::AuthPrintf ( "HTTP: Connection flood from '%s'. Ignoring for 1 min.\n", szAddress );
         return false;
     }
-
+#endif
     return true;
 }
