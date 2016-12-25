@@ -1,6 +1,6 @@
 project "Multiplayer - San Andreas"
 	language "C++"
-	kind "SharedLib"
+	kind "StaticLib"
 	targetname "multiplayer_sa"
 	targetdir(buildpath("mta"))
 	

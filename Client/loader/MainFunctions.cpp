@@ -96,7 +96,8 @@ void InitLocalization( bool bShowErrors )
     // Use LOAD_WITH_ALTERED_SEARCH_PATH so the strCoreDLL path is searched first for dependent dlls
     if ( bShowErrors )
         SetErrorMode( dwPrevMode );
-    HMODULE hCoreModule = LoadLibraryEx( strCoreDLL, NULL, LOAD_WITH_ALTERED_SEARCH_PATH );
+    HMODULE hCoreModule = LoadLibrary( strCoreDLL );
+	int error = GetLastError();
     SetErrorMode( dwPrevMode );
     if ( hCoreModule == NULL )
     {
@@ -763,11 +764,11 @@ void CheckDataFiles( void )
     }
 
     // Check for client file
-    if ( !FileExists ( PathJoin( strMTASAPath, CHECK_DM_CLIENT_NAME ) ) )
+    /*if ( !FileExists ( PathJoin( strMTASAPath, CHECK_DM_CLIENT_NAME ) ) )
     {
         DisplayErrorMessageBox ( SString(_("Load failed. Please ensure that %s is installed correctly."),CHECK_DM_CLIENT_NAME), _E("CL18"), "client-missing" );
         return ExitProcess( EXIT_ERROR );
-    }
+    }*/
 
     // Make sure the gta executable exists
     if ( !FileExists( PathJoin( strGTAPath, MTA_GTAEXE_NAME ) ) )

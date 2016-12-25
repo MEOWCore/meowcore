@@ -2,7 +2,7 @@ project "pcre"
 	language "C++"
 	targetname "pcre3"
 	
-	defines { "HAVE_CONFIG_H" }
+	defines { "HAVE_CONFIG_H", "PCRE_STATIC" }
 	includedirs { "." }
 	
 	vpaths { 
@@ -19,7 +19,7 @@ project "pcre"
 	}
 	
 	filter "system:windows"
-		kind "SharedLib"
+		kind "StaticLib"
 		targetdir(buildpath("server/mods/deathmatch"))
 		
 	filter {"system:windows", "platforms:x86"}

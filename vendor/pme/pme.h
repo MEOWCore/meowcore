@@ -27,6 +27,8 @@
 #include <string.h>
 using namespace std;
 
+#define PCRE_STATIC
+
 #include <pcre.h>
 
 

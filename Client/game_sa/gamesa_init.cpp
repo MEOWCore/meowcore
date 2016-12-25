@@ -11,12 +11,12 @@
 *****************************************************************************/
 
 #include "StdInc.h"
-#define DECLARE_PROFILER_SECTION_gamesa_init
-#include "profiler/SharedUtil.Profiler.h"
+//#define DECLARE_PROFILER_SECTION_gamesa_init
+//#include "profiler/SharedUtil.Profiler.h"
 
-CGameSA* pGame = NULL;
-CNet* g_pNet = NULL;
-CCoreInterface* g_pCore = NULL;
+extern CGameSA* pGame = NULL;
+extern CNet* g_pNet;
+extern CCoreInterface* g_pCore;
 
 //-----------------------------------------------------------
 // This function uses the initialized data sections of the executables
@@ -39,31 +39,33 @@ CGame * GetGameInterface( CCoreInterface* pCore )
 
 //-----------------------------------------------------------
 
-
-void MemSet ( void* dwDest, int cValue, uint uiAmount )
+/*
+void MemSet(void* dwDest, int cValue, uint uiAmount)
 {
-    if ( ismemset( dwDest, cValue, uiAmount ) )
-        return;
-    SMemWrite hMem = OpenMemWrite( dwDest, uiAmount );
-    memset ( dwDest, cValue, uiAmount );
-    CloseMemWrite( hMem );
+	if (ismemset(dwDest, cValue, uiAmount))
+		return;
+	SMemWrite hMem = OpenMemWrite(dwDest, uiAmount);
+	memset(dwDest, cValue, uiAmount);
+	CloseMemWrite(hMem);
 }
 
-void MemCpy ( void* dwDest, const void* dwSrc, uint uiAmount )
+void MemCpy(void* dwDest, const void* dwSrc, uint uiAmount)
 {
-    if ( memcmp( dwDest, dwSrc, uiAmount ) == 0 )
-        return;
-    SMemWrite hMem = OpenMemWrite( dwDest, uiAmount );
-    memcpy ( dwDest, dwSrc, uiAmount );
-    CloseMemWrite( hMem );
+	if (memcmp(dwDest, dwSrc, uiAmount) == 0)
+		return;
+	SMemWrite hMem = OpenMemWrite(dwDest, uiAmount);
+	memcpy(dwDest, dwSrc, uiAmount);
+	CloseMemWrite(hMem);
 }
 
-bool GetDebugIdEnabled ( uint uiDebugId )
+bool GetDebugIdEnabled(uint uiDebugId)
 {
-    return g_pCore->GetDebugIdEnabled ( uiDebugId );  
+	return g_pCore->GetDebugIdEnabled(uiDebugId);
 }
 
-void LogEvent ( uint uiDebugId, const char* szType, const char* szContext, const char* szBody, uint uiAddReportLogId )
+void LogEvent(uint uiDebugId, const char* szType, const char* szContext, const char* szBody, uint uiAddReportLogId)
 {
-    g_pCore->LogEvent ( uiDebugId, szType, szContext, szBody, uiAddReportLogId );  
+	g_pCore->LogEvent(uiDebugId, szType, szContext, szBody, uiAddReportLogId);
 }
+
+*/

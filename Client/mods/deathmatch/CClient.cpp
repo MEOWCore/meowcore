@@ -17,7 +17,7 @@
 
 #include <StdInc.h>
 #define ALLOC_STATS_MODULE_NAME "client"
-#include "SharedUtil.hpp"
+//#include "SharedUtil.hpp"
 
 CCoreInterface* g_pCore = NULL;
 CLocalizationInterface* g_pLocalization = NULL;

@@ -8,7 +8,7 @@
 
 project "Client - Network"
 	language "C++"
-	kind "SharedLib"
+	kind "StaticLib"
 	targetname "netc"
 	targetdir(buildpath("mta"))
 	

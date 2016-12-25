@@ -148,9 +148,11 @@ void CMultiplayerSA::Init_13 ( void )
     InitHooks_13 ( );
     InitMemoryCopies_13 ( );
 }
-
+float fTime = 0;
 void CMultiplayerSA::InitHooks_13 ( void )
 {
+	fTime = *((float*)0xB7C4E4);
+
     // HookInstalls go here
     HookInstall ( HOOKPOS_CEventHitByWaterCannon, (DWORD)HOOK_CEventHitByWaterCannon, 9 );
 
@@ -248,7 +250,7 @@ bool bSiren = false;
 
 bool bContinue = false;
 
-float fTime = *((float*)0xB7C4E4);
+
 
 DWORD dwSirenType = 0;
 DWORD dwSirenType2 = 3;

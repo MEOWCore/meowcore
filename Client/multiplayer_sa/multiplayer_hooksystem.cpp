@@ -31,7 +31,7 @@ VOID HookInstallCall ( DWORD dwInstallAddress,
 
 ////////////////////////////////////////////////////////////////////
 
-BOOL HookInstall( DWORD dwInstallAddress,
+BOOL HookInstallMP( DWORD dwInstallAddress,
                   DWORD dwHookHandler,
                   int iJmpCodeSize )
 {
@@ -53,7 +53,7 @@ BOOL HookInstall( DWORD dwInstallAddress,
 
 ////////////////////////////////////////////////////////////////////
 
-BYTE * CreateJump ( DWORD dwFrom, DWORD dwTo, BYTE * ByteArray )
+BYTE * CreateJumpMP ( DWORD dwFrom, DWORD dwTo, BYTE * ByteArray )
 {
     ByteArray[0] = 0xE9;
     MemPutFast < DWORD > ( &ByteArray[1], dwTo - (dwFrom + 5) );

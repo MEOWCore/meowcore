@@ -4256,9 +4256,9 @@ void _declspec(naked) HOOK_CPhysical_ApplyGravity ()
         jmp RETURN_CPhysical_ApplyGravity
     }
 }
-
+void GetMatrixForGravity(const CVector& vecGravity, CMatrix& mat);
 // ---------------------------------------------------
-
+/*
 void GetMatrixForGravity ( const CVector& vecGravity, CMatrix& mat )
 {
     // Calculates a basis where the z axis is the inverse of the gravity
@@ -4289,7 +4289,7 @@ void GetMatrixForGravity ( const CVector& vecGravity, CMatrix& mat )
         mat.vUp    = CVector ( 0.0f, 0.0f, 1.0f );
     }
 }
-
+*/ // Adam
 // ---------------------------------------------------
 
 CMatrix gravcam_matGravity;

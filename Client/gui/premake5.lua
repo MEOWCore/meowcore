@@ -1,6 +1,6 @@
 project "Client - GUI"
 	language "C++"
-	kind "SharedLib"
+	kind "StaticLib"
 	targetname "cgui"
 	targetdir(buildpath("mta"))
 	

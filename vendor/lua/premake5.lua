@@ -29,7 +29,7 @@ project "Lua_Server"
 if os.get() == "windows" then
 	project "Lua_Client"
 		language "C++"
-		kind "SharedLib"
+		kind "StaticLib"
 		targetname "lua5.1c"
 		targetdir(buildpath("mods/deathmatch"))
 
@@ -49,8 +49,8 @@ if os.get() == "windows" then
 			"LUA_USE_APICHECK"
 		}
 
-		configuration "windows"
-			defines { "LUA_BUILD_AS_DLL" }
+		--configuration "windows"
+	--		defines { "LUA_BUILD_AS_DLL" }
 
         filter "platforms:x64"
             flags { "ExcludeFromBuild" } 

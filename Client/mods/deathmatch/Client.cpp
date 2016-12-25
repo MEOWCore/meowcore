@@ -15,7 +15,7 @@
 
 CClient* g_pClient = NULL;
 
-MTAEXPORT CClientBase* __cdecl InitClient ( void )
+MTAEXPORT CClientBase* __cdecl InitDMClient ( void )
 {
     // Eventually create a client base interface
     if ( !g_pClient )
@@ -24,7 +24,7 @@ MTAEXPORT CClientBase* __cdecl InitClient ( void )
     }
     return g_pClient;
 }
-
+/*
 int WINAPI DllMain ( HINSTANCE hModule, DWORD dwReason, PVOID pvNothing )
 {
     switch ( dwReason )
@@ -51,3 +51,4 @@ int WINAPI DllMain ( HINSTANCE hModule, DWORD dwReason, PVOID pvNothing )
 
     return FALSE;
 }
+*/

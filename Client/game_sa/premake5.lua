@@ -1,6 +1,6 @@
 project "Game - San Andreas"
 	language "C++"
-	kind "SharedLib"
+	kind "StaticLib"
 	targetname "game_sa"
 	targetdir(buildpath("mta"))
 	

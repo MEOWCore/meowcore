@@ -27,7 +27,7 @@ CModManager::CModManager ( void )
     m_bUnloadRequested = false;
 
     // Default mod name defaults to "default"
-    m_strDefaultModName = "default";
+    m_strDefaultModName = "deathmatch";
 
     // Load the modlist from the folders in "mta/mods"
     InitializeModList ( CalcMTASAPath( "mods\\" ) );
@@ -95,6 +95,8 @@ bool CModManager::IsLoaded ( void )
     return ( m_hClientDLL != NULL );
 }
 
+// deathmatch
+extern "C" _declspec(dllexport) CClientBase* __cdecl InitDMClient(void);
 
 CClientBase* CModManager::Load ( const char* szName, const char* szArguments )
 {
@@ -102,6 +104,8 @@ CClientBase* CModManager::Load ( const char* szName, const char* szArguments )
     Unload ();
 
     CMessageLoopHook::GetSingleton ().SetRefreshMsgQueueEnabled( false );
+
+	InitializeModList("\\mods");
 
     // Get the entry for the given name
     std::map < std::string, std::string >::iterator itMod = m_ModDLLFiles.find ( szName );
@@ -121,7 +125,7 @@ CClientBase* CModManager::Load ( const char* szName, const char* szArguments )
     
 
     // Load the library and use the supplied path as an extra place to search for dependencies
-    m_hClientDLL = LoadLibraryEx ( itMod->second.c_str (), NULL, LOAD_WITH_ALTERED_SEARCH_PATH );
+	m_hClientDLL = (HMODULE)0x5555; // LoadLibraryEx(itMod->second.c_str(), NULL, LOAD_WITH_ALTERED_SEARCH_PATH);
     if ( !m_hClientDLL )
     {
         DWORD dwError = GetLastError ();
@@ -146,11 +150,15 @@ CClientBase* CModManager::Load ( const char* szName, const char* szArguments )
     // Get the address of InitClient
     typedef CClientBase* (__cdecl pfnClientInitializer) ( void );     /* FIXME: Should probably not be here */
 
-    pfnClientInitializer* pClientInitializer = reinterpret_cast < pfnClientInitializer* > ( GetProcAddress ( m_hClientDLL, "InitClient" ) );
+    //pfnClientInitializer* pClientInitializer = reinterpret_cast < pfnClientInitializer* > ( GetProcAddress ( GetModuleHandle(NULL), itMod->second.c_str()) );
+
+	pfnClientInitializer* pClientInitializer = reinterpret_cast < pfnClientInitializer* > (InitDMClient);
+
     if ( pClientInitializer == NULL )
     {
-        CCore::GetSingleton ().GetConsole ()->Printf ( "Unable to load %s's DLL (unknown mod)", szName, GetLastError () );
-        FreeLibrary ( m_hClientDLL );
+        CCore::GetSingleton ().GetConsole ()->Printf ( "Unable to load %s's (initializer error: 0x%x)", szName, GetLastError () );
+		//FreeLibrary ( m_hClientDLL );
+		m_hClientDLL = NULL;
         return NULL;
     }
 
@@ -161,8 +169,9 @@ CClientBase* CModManager::Load ( const char* szName, const char* szArguments )
     if ( !m_pClientBase ||
          m_pClientBase->ClientInitialize ( szArguments, CCore::GetSingletonPtr () ) != 0 )
     {
-        CCore::GetSingleton ().GetConsole ()->Printf ( "Unable to load %s's DLL (unable to init, bad version?)", szName, GetLastError () );
-        FreeLibrary ( m_hClientDLL );
+        CCore::GetSingleton ().GetConsole ()->Printf ( "Unable to load %s's (unable to init, bad version?)", szName, GetLastError () );
+        //FreeLibrary ( m_hClientDLL );
+		m_hClientDLL = NULL;
         return NULL;
     }
 
@@ -179,6 +188,7 @@ CClientBase* CModManager::Load ( const char* szName, const char* szArguments )
     return m_pClientBase;
 }
 
+// Adam
 
 void CModManager::Unload ( void )
 {
@@ -201,7 +211,7 @@ void CModManager::Unload ( void )
         CGraphics::GetSingleton ().GetScreenGrabber ()->ClearScreenShotQueue ();
 
         // Free the Client DLL
-        FreeLibrary ( m_hClientDLL );
+        //FreeLibrary ( m_hClientDLL );
         m_hClientDLL = NULL;
 
         // Call the on mod unload func
@@ -329,7 +339,10 @@ void CModManager::RefreshMods ( void )
 
 void CModManager::InitializeModList ( const char* szModFolderPath )
 {
-    // Variables used to search the mod directory
+	m_ModDLLFiles["default"] = "InitDefaultClient";
+	m_ModDLLFiles["deathmatch"] = "InitDMClient";
+
+    /*// Variables used to search the mod directory
     WIN32_FIND_DATAW FindData;
     HANDLE hFind;
 
@@ -360,7 +373,7 @@ void CModManager::InitializeModList ( const char* szModFolderPath )
     }
 
     // Reset the working directory
-    filePathTranslator.UnSetCurrentWorkingDirectory ();
+    filePathTranslator.UnSetCurrentWorkingDirectory ();*/
 }
 
 
@@ -373,6 +386,10 @@ void CModManager::Clear ( void )
 
 void CModManager::VerifyAndAddEntry ( const char* szModFolderPath, const char* szName )
 {
+	// As for now - only deathmatch with InitDMClient function.
+	m_ModDLLFiles["default"] = "InitDefaultClient";
+	m_ModDLLFiles["deathmatch"] = "InitDMClient";
+	/*
     // Name musn't be a . or .. link or we might load unwanted libraries
     // Hack: Also skip race for now as it will crash the game!
     if ( ( strcmp ( szName, "." ) != 0) && 
@@ -404,6 +421,6 @@ void CModManager::VerifyAndAddEntry ( const char* szModFolderPath, const char* s
         {
             WriteErrorEvent( SString( "Invalid mod DLL: %s (reason: %d)", szName, GetLastError() ) );
         }
-    }
+    }*/
 }
 

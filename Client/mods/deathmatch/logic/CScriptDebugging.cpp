@@ -210,7 +210,7 @@ void CScriptDebugging::LogPCallError( lua_State* luaVM, const SString& strRes, b
 }
 
 
-void CALLBACK TimerProc( void* lpParametar, BOOLEAN TimerOrWaitFired )
+void CALLBACK TimerProcLogic( void* lpParametar, BOOLEAN TimerOrWaitFired )
 {
     // Got a logfile?
     if ( CScriptDebugging::m_pLogFile != NULL )
@@ -273,7 +273,7 @@ bool CScriptDebugging::SetLogfile ( const char* szFilename, unsigned int uiLevel
         m_pLogFile = pFile;
 
         // Create a timer
-        ::CreateTimerQueueTimer( &m_flushTimerHandle, NULL, TimerProc, NULL, 50, 50, WT_EXECUTEINTIMERTHREAD );
+        ::CreateTimerQueueTimer( &m_flushTimerHandle, NULL, TimerProcLogic, NULL, 50, 50, WT_EXECUTEINTIMERTHREAD );
         return true;
     }
 

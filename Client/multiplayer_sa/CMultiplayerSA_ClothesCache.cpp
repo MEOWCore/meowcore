@@ -10,9 +10,11 @@
 *****************************************************************************/
 
 #include "StdInc.h"
-#define RWFUNC_IMPLEMENT
+//#define RWFUNC_IMPLEMENT
 #include "..\game_sa\gamesa_renderware.h"
-#include "..\game_sa\gamesa_renderware.hpp"
+//#include "..\game_sa\gamesa_renderware.hpp"
+
+void InitRwFunctions(eGameVersion);
 
 #define CLOTHES_REF_TEST    1       // Debug clothes geometry refs
 

@@ -22,6 +22,7 @@ project "Client - Core"
 
 	libdirs {
 		"../../vendor/detours/lib",
+		"../../Bin/Server/",
 	}
 	
 
@@ -46,7 +47,14 @@ project "Client - Core"
 	links {
 		"ws2_32", "d3dx9", "Userenv", "DbgHelp", "xinput", "Imagehlp", "dxguid", "dinput8", 
 		"strmiids",	"odbc32", "odbccp32", "shlwapi", "winmm", "gdi32", "Imm32", "Psapi", 
-		"pthread", "libpng", "jpeg", "zlib", "tinygettext", "detours"
+		"pthread", "libpng", "jpeg", "zlib", "tinygettext", "detours", "Client - Game Logic", "Game - San Andreas", "Multiplayer - San Andreas", "Client - GUI",
+		"../../vendor/bass/lib/bass",
+		"../../vendor/bass/lib/bass_fx",
+		"../../vendor/bass/lib/bassmix",
+		"../../vendor/bass/lib/tags",
+		"CEGUI", "DirectX9GUIRenderer", "Falagard",
+		"../../vendor/cegui-0.4.0-custom/lib/freetype2412ST.lib", -- Todo: Select Debug variant, also move freetype to vendor
+		"dxerr.lib", "Lua_Client", "pcre", "raknet", "libcurl"
 	}
 
 	defines {

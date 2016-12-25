@@ -12,10 +12,10 @@
 
 #include "StdInc.h"
 #define ALLOC_STATS_MODULE_NAME "cgui"
-#include "SharedUtil.hpp"
+//#include "SharedUtil.hpp"
 
 CGUI_Impl* g_pGUI = NULL;
-
+/*
 int WINAPI DllMain ( HINSTANCE hModule, DWORD dwReason, PVOID pvNothing )
 {
     // Eventually destroy our GUI upon detach
@@ -26,6 +26,7 @@ int WINAPI DllMain ( HINSTANCE hModule, DWORD dwReason, PVOID pvNothing )
 
     return TRUE;
 }
+*/ // Adam
 
 extern "C" _declspec(dllexport)
 CGUI* InitGUIInterface ( IDirect3DDevice9* pDevice )

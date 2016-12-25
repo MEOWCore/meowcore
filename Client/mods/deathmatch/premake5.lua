@@ -1,6 +1,6 @@
 project "Client - Game Logic"
 	language "C++"
-	kind "SharedLib"
+	kind "StaticLib"
 	targetname "client"
 	targetdir(buildpath("mods/deathmatch"))
 	

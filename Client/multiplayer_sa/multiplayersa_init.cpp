@@ -15,10 +15,10 @@
 #define DECLARE_PROFILER_SECTION_multiplayersa_init
 #include "profiler/SharedUtil.Profiler.h"
 
-CGame* pGameInterface = 0;
-CMultiplayerSA* pMultiplayer = 0;
-CNet* g_pNet = NULL;
-CCoreInterface* g_pCore = NULL;
+extern CGame* pGameInterface = 0;
+extern CMultiplayerSA* pMultiplayer = 0;
+extern CNet* g_pNet;
+extern CCoreInterface* g_pCore;
 
 //-----------------------------------------------------------
 // This function uses the initialized data sections of the executables
@@ -44,7 +44,7 @@ CMultiplayer* InitMultiplayerInterface(CCoreInterface* pCore)
 }
 
 //-----------------------------------------------------------
-
+/*
 
 void MemSet ( void* dwDest, int cValue, uint uiAmount )
 {
@@ -83,6 +83,49 @@ void LogEvent ( uint uiDebugId, const char* szType, const char* szContext, const
 {
     g_pCore->LogEvent ( uiDebugId, szType, szContext, szBody, uiAddReportLogId );  
 }
+
+*/
+
+// move out // Adam
+void MemSet(void* dwDest, int cValue, uint uiAmount)
+{
+	if (ismemset(dwDest, cValue, uiAmount))
+		return;
+	SMemWrite hMem = OpenMemWrite(dwDest, uiAmount);
+	memset(dwDest, cValue, uiAmount);
+	CloseMemWrite(hMem);
+}
+
+void MemCpy(void* dwDest, const void* dwSrc, uint uiAmount)
+{
+	if (memcmp(dwDest, dwSrc, uiAmount) == 0)
+		return;
+	SMemWrite hMem = OpenMemWrite(dwDest, uiAmount);
+	memcpy(dwDest, dwSrc, uiAmount);
+	CloseMemWrite(hMem);
+}
+
+void OnCrashAverted(uint uiId)
+{
+	g_pCore->OnCrashAverted(uiId);
+}
+
+void OnEnterCrashZone(uint uiId)
+{
+	g_pCore->OnEnterCrashZone(uiId);
+}
+
+
+bool GetDebugIdEnabled(uint uiDebugId)
+{
+	return g_pCore->GetDebugIdEnabled(uiDebugId);
+}
+
+void LogEvent(uint uiDebugId, const char* szType, const char* szContext, const char* szBody, uint uiAddReportLogId)
+{
+	g_pCore->LogEvent(uiDebugId, szType, szContext, szBody, uiAddReportLogId);
+}
+
 
 void CallGameEntityRenderHandler( CEntitySAInterface* pEntity )
 {

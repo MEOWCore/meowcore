@@ -18,7 +18,7 @@
 
 #include "StdInc.h"
 #define ALLOC_STATS_MODULE_NAME "game_sa"
-#include "SharedUtil.hpp"
+//#include "SharedUtil.hpp"
 #include "SharedUtil.MemAccess.hpp"
 
 unsigned long* CGameSA::VAR_SystemTime;

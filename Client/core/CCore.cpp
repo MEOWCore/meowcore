@@ -983,34 +983,39 @@ T* CreateModule ( CModuleLoader& m_Loader, const SString& strName, const SString
     return InitModule < T > ( m_Loader, strName, strInitializer, pObj );
 }
 
+extern "C" CGame * GetGameInterface(CCoreInterface * core);
 
 void CCore::CreateGame ( )
 {
-    m_pGame = CreateModule < CGame > ( m_GameModule, "Game", "game_sa", "GetGameInterface", this );
+	m_pGame = GetGameInterface(this); //CreateModule < CGame > ( m_GameModule, "Game", "game_sa", "GetGameInterface", this );
+
+
+
     if ( m_pGame->GetGameVersion () >= VERSION_11 )
     {
         BrowseToSolution ( "downgrade", TERMINATE_PROCESS, "Only GTA:SA version 1.0 is supported!\n\nYou are now being redirected to a page where you can patch your version." );
     }
 }
-
+extern "C" CMultiplayer * InitMultiplayerInterface(CCoreInterface * core);
 
 void CCore::CreateMultiplayer ( )
 {
-    m_pMultiplayer = CreateModule < CMultiplayer > ( m_MultiplayerModule, "Multiplayer", "multiplayer_sa", "InitMultiplayerInterface", this );
+	m_pMultiplayer = InitMultiplayerInterface(this); // CreateModule < CMultiplayer >(m_MultiplayerModule, "Multiplayer", "multiplayer_sa", "InitMultiplayerInterface", this);
     if ( m_pMultiplayer )
         m_pMultiplayer->SetIdleHandler ( CCore::StaticIdleHandler );
 }
+
 
 
 void CCore::DeinitGUI ( void )
 {
 
 }
-
+extern "C" CGUI * InitGUIInterface(IDirect3DDevice9 * d3d);
 
 void CCore::InitGUI ( IDirect3DDevice9* pDevice )
 {
-    m_pGUI = InitModule < CGUI > ( m_GUIModule, "GUI", "InitGUIInterface", pDevice );
+	m_pGUI = InitGUIInterface(pDevice); // InitModule < CGUI >(m_GUIModule, "GUI", "InitGUIInterface", pDevice);
 
     // and set the screenshot path to this default library (screenshots shouldnt really be made outside mods)
     std::string strScreenShotPath = CalcMTASAPath ( "screenshots" );
