@@ -1,29 +1,20 @@
 premake.modules.install_resources = {}
 
-local unzip = function(zip_path, target_path)
-	zip_path = path.translate(zip_path)
-	target_path = path.translate(target_path)
-
-	if os.get() == "windows" then
-		os.executef("call \"utils\\7z\\7za.exe\" x \"%s\" -aoa -o\"%s\"", zip_path, target_path)
-	else
-		-- Linux: TODO
-	end
-end
+local SERVER_DIR = "Bin/server/resources"
+local RESOURCES_DIR = "Shared/data/resources"
 
 newaction {
 	trigger = "install_resources",
 	description = "Installs the resources to the bin directory",
 	
 	execute = function()
-		-- Download resources
-		http.download("http://mirror.mtasa.com/mtasa/resources/mtasa-resources-latest.zip", "temp_resources.zip")
+		-- Make Bin directory if not exists
+		os.mkdir(SERVER_DIR)
 		
-		-- Extract resources
-		unzip("temp_resources.zip", "Bin/server/mods/deathmatch/resources/")
-		
-		-- Cleanup
-		os.remove("temp_resources.zip")
+		-- Copy data files
+		if os.get() == "windows" then
+			os.copydir(RESOURCES_DIR, SERVER_DIR)
+		end
 	end
 }
 
