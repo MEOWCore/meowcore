@@ -44,6 +44,21 @@ distribution.
 #define DEBUG
 #endif
 
+#define TiXmlVisitor XMLLTiXmlVisitor
+#define TiXmlEncoding XMLLTiXmlEncoding
+#define TiXmlBase XMLLTiXmlBase
+#define TiXmlNode XMLLTiXmlNode
+#define TiXmlAttribute XMLLTiXmlAttribute
+#define TiXmlAttributeSet XMLLTiXmlAttributeSet
+#define TiXmlElement XMLLTiXmlElement
+#define TiXmlComment XMLLTiXmlComment
+#define TiXmlText XMLLTiXmlText
+#define TiXmlDeclaration XMLLTiXmlDeclaration
+#define TiXmlUnknown XMLLTiXmlUnknown
+#define TiXmlDocument XMLLTiXmlDocument
+#define TiXmlHandle XMLLTiXmlHandle
+#define TiXmlPrinter XMLLTiXmlPrinter
+
 #ifdef TIXML_USE_STL
 	#include <string>
  	#include <iostream>
@@ -51,7 +66,7 @@ distribution.
 	#define TIXML_STRING		std::string
 #else
 	#include "tinystr.h"
-	#define TIXML_STRING		TiXmlString
+	#define TIXML_STRING		XMLLTiXmlString
 #endif
 
 // Deprecated library function hell. Compilers want to use the
@@ -127,6 +142,9 @@ struct TiXmlCursor
 
 	@sa TiXmlNode::Accept()
 */
+
+
+
 class TiXmlVisitor
 {
 public:

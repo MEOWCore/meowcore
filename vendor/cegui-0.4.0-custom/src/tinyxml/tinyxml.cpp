@@ -1175,6 +1175,35 @@ TiXmlNode* TiXmlComment::Clone() const
 	return clone;
 }
 
+void TiXmlElement::StreamOut(TIXML_OSTREAM * stream) const
+{
+	(*stream) << "<" << value;
+
+	const TiXmlAttribute* attrib;
+	for (attrib = attributeSet.First(); attrib; attrib = attrib->Next())
+	{
+		(*stream) << " ";
+		attrib->StreamOut(stream);
+	}
+
+	// If this node has children, give it a closing tag. Else
+	// make it an empty tag.
+	TiXmlNode* node;
+	if (firstChild)
+	{
+		(*stream) << ">";
+
+		for (node = firstChild; node; node = node->NextSibling())
+		{
+			node->StreamOut(stream);
+		}
+		(*stream) << "</" << value << ">";
+	}
+	else
+	{
+		(*stream) << " />";
+	}
+}
 
 void TiXmlText::Print( FILE* cfile, int /*depth*/ ) const
 {

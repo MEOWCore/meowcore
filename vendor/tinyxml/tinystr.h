@@ -56,6 +56,7 @@ distribution.
 	#define TIXML_EXPLICIT
 #endif
 
+#define TiXmlString XMLLTiXmlString
 
 /*
    TiXmlString is an emulation of a subset of the std::string template.
