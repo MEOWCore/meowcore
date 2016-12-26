@@ -20,8 +20,8 @@ newaction {
 		end
 
 		-- Copy configs
-		os.copydir("Server/mods/deathmatch", BIN_DIR.."/server/mods/deathmatch", "*.conf", false, true)
-		os.copydir("Server/mods/deathmatch", BIN_DIR.."/server/mods/deathmatch", "*.xml", false, true)
+		os.copydir("Server/mods/deathmatch", BIN_DIR.."/server/", "*.conf", false, true)
+		os.copydir("Server/mods/deathmatch", BIN_DIR.."/server/", "*.xml", false, true)
 		
 		-- Make sure server/x64 directory exists
 		os.mkdir(BIN_DIR.."/server/x64")
